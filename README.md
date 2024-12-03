@@ -2,7 +2,7 @@
 
 <div align="center">
   <a href="https://flowchef.github.io/"><img src="https://img.shields.io/static/v1?label=Project%20Page&message=GitHub&color=blue&logo=github"></a> &ensp;
-  <a href="#"><img src="https://img.shields.io/static/v1?label=ArXiv&message=2411.xxxxx&color=B31B1B&logo=arxiv"></a> &ensp;
+  <a href="https://arxiv.org/abs/2412.00100"><img src="https://img.shields.io/static/v1?label=ArXiv&message=2412.00100&color=B31B1B&logo=arxiv"></a> &ensp;
   <a href="https://huggingface.co/spaces/FlowChef/FlowChef-Flux1-dev"><img src="https://img.shields.io/static/v1?label=Flux(editing x inverse problems)&message=Demo&color=yellow"></a> &ensp;
   <a href="https://huggingface.co/spaces/FlowChef/FlowChef-InstaFlow-Edit"><img src="https://img.shields.io/static/v1?label=InstaFlow(editing)&message=Demo&color=yellow"></a> &ensp;
   <a href="https://huggingface.co/spaces/FlowChef/FlowChef-InstaFlow-InverseProblem-Inpainting"><img src="https://img.shields.io/static/v1?label=InstaFlow(inpainting)&message=Demo&color=yellow"></a> &ensp;
