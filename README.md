@@ -37,7 +37,7 @@
 @article{patel2024flowchef,
         title={Steering Rectified Flow Models in the Vector Field for Controlled Image Generation},
         author={Patel, Maitreya and Wen, Song and Metaxas, Dimitris N. and Yang, Yezhou},
-        journal={arXiv preprint arXiv:xxxxxxxx},
+        journal={arXiv preprint arXiv:2412.00100},
         year={2024}
       }
 ```
