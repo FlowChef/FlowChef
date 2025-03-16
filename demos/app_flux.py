@@ -9,8 +9,8 @@ import os
 import json
 from datetime import datetime
 
-from fluxcombined import FluxPipeline
-from scheduling_flow_match_euler_discrete import FlowMatchEulerDiscreteScheduler
+from src.fluxcombined import FluxPipeline
+from src.scheduling_flow_match_euler_discrete import FlowMatchEulerDiscreteScheduler
 
 # Load the Stable Diffusion Inpainting model
 scheduler = FlowMatchEulerDiscreteScheduler.from_pretrained("black-forest-labs/FLUX.1-dev", subfolder="scheduler")
@@ -291,9 +291,9 @@ with gr.Blocks() as demo:
         examples=[
             [
                 "Inpainting",  # mode
-                "./saved_results/20241126_053639/input.png",  # image with mask
-                "./saved_results/20241126_053639/mask.png",
-                "./saved_results/20241126_053639/output.png",
+                "./assets/saved_results/20241126_053639/input.png",  # image with mask
+                "./assets/saved_results/20241126_053639/mask.png",
+                "./assets/saved_results/20241126_053639/output.png",
                 "a dog",  # prompt
                 " ",  # edit_prompt 
                 0,  # seed
@@ -307,9 +307,9 @@ with gr.Blocks() as demo:
             ],
             [
                 "Inpainting",  # mode
-                "./saved_results/20241126_173140/input.png",  # image with mask
-                "./saved_results/20241126_173140/mask.png",
-                "./saved_results/20241126_173140/output.png",
+                "./assets/saved_results/20241126_173140/input.png",  # image with mask
+                "./assets/saved_results/20241126_173140/mask.png",
+                "./assets/saved_results/20241126_173140/output.png",
                 "a cat with blue eyes",  # prompt
                 " ",  # edit_prompt 
                 0,  # seed
@@ -323,9 +323,9 @@ with gr.Blocks() as demo:
             ],
             [
                 "Editing",  # mode
-                "./saved_results/20241126_181633/input.png",  # image with mask
-                "./saved_results/20241126_181633/mask.png",
-                "./saved_results/20241126_181633/output.png",
+                "./assets/saved_results/20241126_181633/input.png",  # image with mask
+                "./assets/saved_results/20241126_181633/mask.png",
+                "./assets/saved_results/20241126_181633/output.png",
                 " ",  # prompt
                 "volcano eruption",  # edit_prompt 
                 0,  # seed
@@ -339,9 +339,9 @@ with gr.Blocks() as demo:
             ],
             [
                 "Editing",  # mode
-                "./saved_results/20241126_214810/input.png",  # image with mask
-                "./saved_results/20241126_214810/mask.png",
-                "./saved_results/20241126_214810/output.png",
+                "./assets/saved_results/20241126_214810/input.png",  # image with mask
+                "./assets/saved_results/20241126_214810/mask.png",
+                "./assets/saved_results/20241126_214810/output.png",
                 " ",  # prompt
                 "a dog with flowers in the mouth",  # edit_prompt 
                 0,  # seed
@@ -355,9 +355,9 @@ with gr.Blocks() as demo:
             ],
             [
                 "Inpainting",  # mode
-                "./saved_results/20241127_025429/input.png",  # image with mask
-                "./saved_results/20241127_025429/mask.png",
-                "./saved_results/20241127_025429/output.png",
+                "./assets/saved_results/20241127_025429/input.png",  # image with mask
+                "./assets/saved_results/20241127_025429/mask.png",
+                "./assets/saved_results/20241127_025429/output.png",
                 "A building with \"ASU\" written on it.",  # prompt
                 "",  # edit_prompt 
                 52,  # seed
@@ -371,9 +371,9 @@ with gr.Blocks() as demo:
             ],
             [
                 "Inpainting",  # mode
-                "./saved_results/20241126_222257/input.png",  # image with mask
-                "./saved_results/20241126_222257/mask.png",
-                "./saved_results/20241126_222257/output.png",
+                "./assets/saved_results/20241126_222257/input.png",  # image with mask
+                "./assets/saved_results/20241126_222257/mask.png",
+                "./assets/saved_results/20241126_222257/output.png",
                 "A cute pig with big eyes",  # prompt
                 "",  # edit_prompt 
                 0,  # seed
@@ -387,9 +387,9 @@ with gr.Blocks() as demo:
             ],
             [
                 "Editing",  # mode
-                "./saved_results/20241126_222522/input.png",  # image with mask
-                "./saved_results/20241126_222522/mask.png",
-                "./saved_results/20241126_222522/output.png",
+                "./assets/saved_results/20241126_222522/input.png",  # image with mask
+                "./assets/saved_results/20241126_222522/mask.png",
+                "./assets/saved_results/20241126_222522/output.png",
                 "A cute rabbit with big eyes",  # prompt
                 "A cute pig with big eyes",  # edit_prompt 
                 0,  # seed
@@ -403,9 +403,9 @@ with gr.Blocks() as demo:
             ],
             [
                 "Editing",  # mode
-                "./saved_results/20241126_223719/input.png",  # image with mask
-                "./saved_results/20241126_223719/mask.png",
-                "./saved_results/20241126_223719/output.png",
+                "./assets/saved_results/20241126_223719/input.png",  # image with mask
+                "./assets/saved_results/20241126_223719/mask.png",
+                "./assets/saved_results/20241126_223719/output.png",
                 "a cat",  # prompt
                 "a tiger",  # edit_prompt 
                 0,  # seed

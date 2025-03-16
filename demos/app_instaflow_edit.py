@@ -9,7 +9,7 @@ import os
 import json
 from datetime import datetime
 
-from pipeline_rf_inversionfree_edit import RectifiedFlowPipeline as RectifiedFlowEditPipeline
+from src.pipeline_rf_inversionfree_edit import RectifiedFlowPipeline as RectifiedFlowEditPipeline
 
 
 pipe_edit = RectifiedFlowEditPipeline.from_pretrained("XCLIU/2_rectified_flow_from_sd_1_5", torch_dtype=torch.float32)
@@ -245,9 +245,9 @@ with gr.Blocks() as demo:
     gr.Examples(
         examples=[
             [
-                "./saved_results/20241129_154837/input.png",  # image with mask
-                "./saved_results/20241129_154837/mask.png",
-                "./saved_results/20241129_154837/output.png",
+                "./assets/saved_results/20241129_154837/input.png",  # image with mask
+                "./assets/saved_results/20241129_154837/mask.png",
+                "./assets/saved_results/20241129_154837/output.png",
                 "a cat",  # prompt
                 "a tiger",  # edit_prompt 
                 0,  # seed
@@ -260,9 +260,9 @@ with gr.Blocks() as demo:
                 2,  # true_cfg
             ],
             [
-                "./saved_results/20241129_195331/input.png",  # image with mask
-                "./saved_results/20241129_195331/mask.png",
-                "./saved_results/20241129_195331/output.png",
+                "./assets/saved_results/20241129_195331/input.png",  # image with mask
+                "./assets/saved_results/20241129_195331/mask.png",
+                "./assets/saved_results/20241129_195331/output.png",
                 "a cat",  # prompt
                 "a silver sculpture of cat",  # edit_prompt 
                 0,  # seed
@@ -275,9 +275,9 @@ with gr.Blocks() as demo:
                 2,  # true_cfg
             ],
             [
-                "./saved_results/20241129_160439/input.png",  # image with mask
-                "./saved_results/20241129_160439/mask.png",
-                "./saved_results/20241129_160439/output.png",
+                "./assets/saved_results/20241129_160439/input.png",  # image with mask
+                "./assets/saved_results/20241129_160439/mask.png",
+                "./assets/saved_results/20241129_160439/output.png",
                 "a dog",  # prompt
                 "a lion",  # edit_prompt 
                 0,  # seed
@@ -290,9 +290,9 @@ with gr.Blocks() as demo:
                 4,  # true_cfg
             ],
             [
-                "./saved_results/20241129_161118/input.png",  # image with mask
-                "./saved_results/20241129_161118/mask.png",
-                "./saved_results/20241129_161118/output.png",
+                "./assets/saved_results/20241129_161118/input.png",  # image with mask
+                "./assets/saved_results/20241129_161118/mask.png",
+                "./assets/saved_results/20241129_161118/output.png",
                 "two birds sitting on a branch",  # prompt
                 "two origami birds sitting on a branch",  # edit_prompt 
                 0,  # seed
@@ -305,9 +305,9 @@ with gr.Blocks() as demo:
                 2,  # true_cfg
             ],
             [
-                "./saved_results/20241129_161602/input.png",  # image with mask
-                "./saved_results/20241129_161602/mask.png",
-                "./saved_results/20241129_161602/output.png",
+                "./assets/saved_results/20241129_161602/input.png",  # image with mask
+                "./assets/saved_results/20241129_161602/mask.png",
+                "./assets/saved_results/20241129_161602/output.png",
                 "a woman with long hair sitting in the sand at sunset",  # prompt
                 "a woman with short hair sitting in the sand at sunset",  # edit_prompt 
                 0,  # seed
@@ -320,9 +320,9 @@ with gr.Blocks() as demo:
                 2,  # true_cfg
             ],
             [
-                "./saved_results/20241129_160150/input.png",  # image with mask
-                "./saved_results/20241129_160150/mask.png",
-                "./saved_results/20241129_160150/output.png",
+                "./assets/saved_results/20241129_160150/input.png",  # image with mask
+                "./assets/saved_results/20241129_160150/mask.png",
+                "./assets/saved_results/20241129_160150/output.png",
                 "A cute rabbit with big eyes",  # prompt
                 "A cute pig with big eyes",  # edit_prompt 
                 0,  # seed

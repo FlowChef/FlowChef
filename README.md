@@ -37,19 +37,14 @@
 - ~~[x] Release the Flux.1[dev] demo~~
 - ~~[x] Release the InstaFlow demo~~
 
-## Instructions for `gradio_demos`
+## FlowChef Setup (Flux & InstaFlow)
 
-This folder contains all the gradio demos on Flux and InstaFLow. 
-We provide Editing and Inpainting (Inverse Problem Setting) using FlowChef.
-
-To set up the conda environment for the `gradio_demos` project, follow these steps:
+Follow below instructions to setup the FlowChef for SOTA latent space models like Flux.1[Dev] for image editing and inverse problems.
 
 ```bash
 # Clone the repository
 # alternatively manually download the codebase
 git clone https://github.com/FlowChef/FlowChef.git
-
-cd FlowChef/demos
 
 # Create a new conda environment
 conda create --name flowchef_env python=3.10 -y
@@ -58,32 +53,10 @@ conda create --name flowchef_env python=3.10 -y
 conda activate flowchef_env
 
 # Install the required dependencies
-pip install -r requirements.txt
+pip install -e .
 ```
 
-By following these steps, you will have a conda environment set up and ready to run the `demos`.
-
-### **Running the Gradio Demos**
-
-Once the environment is set up, you can run the following demos:
-
-1. **Flux Editing and Inpainting (Inverse Problem):**
-
-    ```bash
-    gradio app_flux.py
-    ```
-
-2. **InstaFlow Editing:**
-
-    ```bash
-    gradio app_instaflow_edit.py
-    ```
-
-3. **InstaFlow Inpainting (Inverse Problem):**
-
-    ```bash
-    gradio app_instaflow_ip_inpaint.py
-    ```
+By following these steps, you will have a conda environment set up and ready to run the image editing & gradio `demos`.
 
 
 ## Instructions for `inverseproblems/pixel_models/rfpp`
@@ -99,6 +72,29 @@ For detailed instructions on:
 Please refer to the detailed README in the [`inverseproblems/pixel_models/rfpp`](inverseproblems/pixel_models/rfpp/README.md) directory.
 
 Note: The current implementation supports AFHQ-Cat and CelebA datasets. Support for ImageNet and higher resolutions (up to 256x256) will be released soon. Alternatively for these use cases, please check our latent model solutions.
+
+
+### **Running the Gradio Demos**
+
+Once the environment is set up, you can run the following demos:
+
+1. **Flux Editing and Inpainting (Inverse Problem):**
+
+    ```bash
+    gradio demos/app_flux.py
+    ```
+
+2. **InstaFlow Editing:**
+
+    ```bash
+    gradio demos/app_instaflow_edit.py
+    ```
+
+3. **InstaFlow Inpainting (Inverse Problem):**
+
+    ```bash
+    gradio demos/app_instaflow_ip_inpaint.py
+    ```
 
 
 ## Citation
