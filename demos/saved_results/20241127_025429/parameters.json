@@ -1,0 +1,13 @@
+{
+    "mode": "Inpainting",
+    "prompt": "A building with \"ASU\" written on it.",
+    "edit_prompt": "",
+    "seed": 52,
+    "randomize_seed": false,
+    "num_inference_steps": 30,
+    "max_steps": 30,
+    "learning_rate": 1,
+    "max_source_steps": 20,
+    "optimization_steps": 10,
+    "true_cfg": 2
+}

@@ -1,0 +1,13 @@
+{
+    "prompt": "two birds sitting on a branch",
+    "edit_prompt": "two origami birds sitting on a branch",
+    "seed": 0,
+    "randomize_seed": true,
+    "num_inference_steps": 50,
+    "max_steps": 50,
+    "learning_rate": 0.5,
+    "max_source_steps": 30,
+    "optimization_steps": 2,
+    "true_cfg": 2,
+    "inverseproblem": false
+}

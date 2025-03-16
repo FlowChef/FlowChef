@@ -1,0 +1,13 @@
+{
+    "mode": "Editing",
+    "prompt": " ",
+    "edit_prompt": "volcano eruption",
+    "seed": 0,
+    "randomize_seed": true,
+    "num_inference_steps": 30,
+    "max_steps": 20,
+    "learning_rate": 0.5,
+    "max_source_steps": 2,
+    "optimization_steps": 3,
+    "true_cfg": 4.5
+}
