@@ -29,27 +29,22 @@
 
 - [ ] Extend the FlowChef to the video models.
 - [ ] (top-priority) Release the support for [Inductive Moment Matching](https://github.com/lumalabs/imm) for inverse problems.
-- [ ] (upnext) Release CLI scripts for the image editing.
-- [ ] (upnext) Release the latent-space inverse problem benchmark script (with baselines).
 - [ ] (low-priority) Release the diffusion baselines.
-- ~~[x] Release the pixel-space inverse problem benchmark script (with baselines)~~
-- ~~[x] Release the organized demo scripts~~
-- ~~[x] Release the Flux.1[dev] demo~~
-- ~~[x] Release the InstaFlow demo~~
+- [x] ~~Release CLI scripts for the image editing.~~
+- [x] ~~Release the latent-space inverse problem benchmark script.~~
+- [x] ~~Release the pixel-space inverse problem benchmark script (with baselines)~~
+- [x] ~~Release the organized demo scripts~~
+- [x] ~~Release the Flux.1[dev] demo~~
+- [x] ~~Release the InstaFlow demo~~
 
-## Instructions for `gradio_demos`
+## FlowChef Setup (Flux & InstaFlow)
 
-This folder contains all the gradio demos on Flux and InstaFLow. 
-We provide Editing and Inpainting (Inverse Problem Setting) using FlowChef.
-
-To set up the conda environment for the `gradio_demos` project, follow these steps:
+Follow below instructions to setup the FlowChef for SOTA latent space models like Flux.1[Dev] for image editing and inverse problems.
 
 ```bash
 # Clone the repository
 # alternatively manually download the codebase
 git clone https://github.com/FlowChef/FlowChef.git
-
-cd FlowChef/demos
 
 # Create a new conda environment
 conda create --name flowchef_env python=3.10 -y
@@ -58,37 +53,81 @@ conda create --name flowchef_env python=3.10 -y
 conda activate flowchef_env
 
 # Install the required dependencies
-pip install -r requirements.txt
+pip install -e .
 ```
 
-By following these steps, you will have a conda environment set up and ready to run the `demos`.
+By following these steps, you will have a conda environment set up and ready to run the image editing & gradio `demos`.
 
-### **Running the Gradio Demos**
+## Instructions for Image Editing
 
-Once the environment is set up, you can run the following demos:
+Although we recommend using the gradio demo for image editing, below we show how to perform editing using CLI.
 
-1. **Flux Editing and Inpainting (Inverse Problem):**
-
-    ```bash
-    gradio app_flux.py
-    ```
-
-2. **InstaFlow Editing:**
-
-    ```bash
-    gradio app_instaflow_edit.py
-    ```
-
-3. **InstaFlow Inpainting (Inverse Problem):**
-
-    ```bash
-    gradio app_instaflow_ip_inpaint.py
-    ```
+> While our current implementation requires manually annotated masks, we have successfully integrated [ConceptAttention](https://github.com/helblazer811/ConceptAttention) with FlowChef on Flux to enable fully automatic, annotation-free editing. This enhancement will be released by March 21st, 2025, significantly streamlining the editing workflow using FlowChef.
 
 
-## Instructions for `inverseproblems/pixel_models/rfpp`
+Follow below instructions to perform image editing on Flux.1[Dev] and InstaFlow models. If it does not give desired result then we suggest to play with the hyperparameters.
 
-This folder contains the code for solving inverse problems using RF++ models. We provide scripts for various baselines and our FlowChef approach.
+```bash
+# Using Flux.1[Dev] (~30 seconds on A100)
+python ./src/flux_edit.py \
+    --input_image ./assets/saved_results/20241126_223719/input.png \
+    --mask_image ./assets/saved_results/20241126_223719/mask.png \
+    --prompt "a cat" \
+    --edit_prompt "a tiger" \
+    --num_inference_steps 30 \
+    --max_steps 30 \
+    --learning_rate 0.6 \
+    --max_source_steps 10 \
+    --optimization_steps 5 \
+    --true_cfg 4.5
+
+# Using InstaFlow (~3 seconds on A100)
+python ./src/instaflow_edit.py \
+    --input_image ./assets/saved_results/20241129_195331/input.png \
+    --mask_image ./assets/saved_results/20241129_195331/mask.png \
+    --prompt "a cat" \
+    --edit_prompt "a silver sculpture of cat" \
+    --num_inference_steps 50 \
+    --max_steps 50 \
+    --learning_rate 0.5 \
+    --max_source_steps 20 \
+    --optimization_steps 5 \
+    --true_cfg 2.0
+```
+
+
+## Instructions for Inverse Problems
+
+### InstaFlow:
+
+Run following command to test inverse problems on InstaFlow using FlowChef without backpropagation.
+Importantly, this is first step towards the gradient-free solution however latent space of VAE and VAE itself could add unwanted non-linearity.
+Therefore, as outlined in the paper, inference is lightning fast but may not be the SOTA all the time.
+
+Supported opetators: `inpaint`, `super`, `deblur`
+
+```bash
+# hyperparameters for super resolution and deblurring
+python ./src/instaflow_inverseproblems.py \
+        --input_dir ./assets/inverseproblems/ \
+        --operation super \
+        --random_seed --learning_rate 0.02 --max_steps 100 --num_inference_steps 100
+
+# hyperparmaeters for box inpainting
+python ./src/instaflow_inverseproblems.py \
+        --input_dir ./assets/inverseproblems/ \
+        --operation inpaint \
+        --random_seed --learning_rate 0.5 --max_steps 200 --num_inference_steps 200
+```
+
+The results will be stored in `./outputs` folder. Many Flow model based baselines does not work very well at all despite compute intensive backpropagation.
+We refer reders to [PSLD-LDM](https://github.com/LituRout/PSLD) and [Resample](https://github.com/soominkwon/resample) for diffusion base approaches.
+Additionally, we do not add any manifold regularizers or learning rate scheduler.
+But we found that (espeically, learning rate scheduler) doing so helps model perform much better.
+
+### Pixel model (RF++): `inverseproblems/pixel_models/rfpp`
+
+[This folder](inverseproblems/pixel_models/rfpp) contains the code for solving inverse problems using RF++ models. We provide scripts for various baselines and our FlowChef approach.
 
 For detailed instructions on:
 - Setting up pretrained checkpoints
@@ -99,6 +138,29 @@ For detailed instructions on:
 Please refer to the detailed README in the [`inverseproblems/pixel_models/rfpp`](inverseproblems/pixel_models/rfpp/README.md) directory.
 
 Note: The current implementation supports AFHQ-Cat and CelebA datasets. Support for ImageNet and higher resolutions (up to 256x256) will be released soon. Alternatively for these use cases, please check our latent model solutions.
+
+
+## **Running the Gradio Demos**
+
+Once the environment is set up, you can run the following demos:
+
+1. **Flux Editing and Inpainting (Inverse Problem):**
+
+    ```bash
+    gradio demos/app_flux.py
+    ```
+
+2. **InstaFlow Editing:**
+
+    ```bash
+    gradio demos/app_instaflow_edit.py
+    ```
+
+3. **InstaFlow Inpainting (Inverse Problem):**
+
+    ```bash
+    gradio demos/app_instaflow_ip_inpaint.py
+    ```
 
 
 ## Citation

@@ -8,7 +8,7 @@ import os
 import json
 from datetime import datetime
 
-from pipeline_rf import RectifiedFlowPipeline
+from src.pipeline_rf import RectifiedFlowPipeline
 
 # Load the Stable Diffusion Inpainting model
 pipe = RectifiedFlowPipeline.from_pretrained("XCLIU/2_rectified_flow_from_sd_1_5", torch_dtype=torch.float32)
@@ -231,9 +231,9 @@ with gr.Blocks() as demo:
     gr.Examples(
         examples=[
             [
-                "./saved_results/20241129_210517/input.png",  # image with mask
-                "./saved_results/20241129_210517/mask.png",
-                "./saved_results/20241129_210517/output.png",
+                "./assets/saved_results/20241129_210517/input.png",  # image with mask
+                "./assets/saved_results/20241129_210517/mask.png",
+                "./assets/saved_results/20241129_210517/output.png",
                 "a cat",  # prompt
                 0,  # seed
                 True,  # randomize_seed
@@ -244,9 +244,9 @@ with gr.Blocks() as demo:
                 False,
             ],
             [
-                "./saved_results/20241129_211124/input.png",  # image with mask
-                "./saved_results/20241129_211124/mask.png",
-                "./saved_results/20241129_211124/output.png",
+                "./assets/saved_results/20241129_211124/input.png",  # image with mask
+                "./assets/saved_results/20241129_211124/mask.png",
+                "./assets/saved_results/20241129_211124/output.png",
                 " ",  # prompt
                 0,  # seed
                 True,  # randomize_seed
@@ -257,9 +257,9 @@ with gr.Blocks() as demo:
                 False,
             ],
             [
-                "./saved_results/20241129_212001/input.png",  # image with mask
-                "./saved_results/20241129_212001/mask.png",
-                "./saved_results/20241129_212001/output.png",
+                "./assets/saved_results/20241129_212001/input.png",  # image with mask
+                "./assets/saved_results/20241129_212001/mask.png",
+                "./assets/saved_results/20241129_212001/output.png",
                 " ",  # prompt
                 52,  # seed
                 False,  # randomize_seed
@@ -270,9 +270,9 @@ with gr.Blocks() as demo:
                 False,
             ],
             [
-                "./saved_results/20241129_212052/input.png",  # image with mask
-                "./saved_results/20241129_212052/mask.png",
-                "./saved_results/20241129_212052/output.png",
+                "./assets/saved_results/20241129_212052/input.png",  # image with mask
+                "./assets/saved_results/20241129_212052/mask.png",
+                "./assets/saved_results/20241129_212052/output.png",
                 " ",  # prompt
                 52,  # seed
                 False,  # randomize_seed
@@ -283,9 +283,9 @@ with gr.Blocks() as demo:
                 False,
             ],
             [
-                "./saved_results/20241129_212155/input.png",  # image with mask
-                "./saved_results/20241129_212155/mask.png",
-                "./saved_results/20241129_212155/output.png",
+                "./assets/saved_results/20241129_212155/input.png",  # image with mask
+                "./assets/saved_results/20241129_212155/mask.png",
+                "./assets/saved_results/20241129_212155/output.png",
                 " ",  # prompt
                 52,  # seed
                 False,  # randomize_seed
