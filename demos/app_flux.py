@@ -414,7 +414,7 @@ with gr.Blocks() as demo:
                 30,  # max_steps
                 0.6,  # learning_rate
                 10,  # max_source_steps
-                5,  # optimization_steps
+                4,  # optimization_steps
                 4.5,  # true_cfg
             ],
         ],

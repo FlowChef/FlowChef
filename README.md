@@ -29,8 +29,8 @@
 
 - [ ] Extend the FlowChef to the video models.
 - [ ] (top-priority) Release the support for [Inductive Moment Matching](https://github.com/lumalabs/imm) for inverse problems.
-- [ ] (upnext) Release CLI scripts for the image editing.
 - [ ] (low-priority) Release the diffusion baselines.
+- [x] ~~Release CLI scripts for the image editing.~~
 - [x] ~~Release the latent-space inverse problem benchmark script.~~
 - [x] ~~Release the pixel-space inverse problem benchmark script (with baselines)~~
 - [x] ~~Release the organized demo scripts~~
@@ -60,7 +60,41 @@ By following these steps, you will have a conda environment set up and ready to 
 
 ## Instructions for Image Editing
 
-Coming
+Although we recommend using the gradio demo for image editing, below we show how to perform editing using CLI.
+
+> While our current implementation requires manually annotated masks, we have successfully integrated [ConceptAttention](https://github.com/helblazer811/ConceptAttention) with FlowChef on Flux to enable fully automatic, annotation-free editing. This enhancement will be released by March 21st, 2025, significantly streamlining the editing workflow using FlowChef.
+
+
+Follow below instructions to perform image editing on Flux.1[Dev] and InstaFlow models. If it does not give desired result then we suggest to play with the hyperparameters.
+
+```bash
+# Using Flux.1[Dev] (~30 seconds on A100)
+python ./src/flux_edit.py \
+    --input_image ./assets/saved_results/20241126_223719/input.png \
+    --mask_image ./assets/saved_results/20241126_223719/mask.png \
+    --prompt "a cat" \
+    --edit_prompt "a tiger" \
+    --num_inference_steps 30 \
+    --max_steps 30 \
+    --learning_rate 0.6 \
+    --max_source_steps 10 \
+    --optimization_steps 5 \
+    --true_cfg 4.5
+
+# Using InstaFlow (~3 seconds on A100)
+python ./src/instaflow_edit.py \
+    --input_image ./assets/saved_results/20241129_195331/input.png \
+    --mask_image ./assets/saved_results/20241129_195331/mask.png \
+    --prompt "a cat" \
+    --edit_prompt "a silver sculpture of cat" \
+    --num_inference_steps 50 \
+    --max_steps 50 \
+    --learning_rate 0.5 \
+    --max_source_steps 20 \
+    --optimization_steps 5 \
+    --true_cfg 2.0
+```
+
 
 ## Instructions for Inverse Problems
 
@@ -106,7 +140,7 @@ Please refer to the detailed README in the [`inverseproblems/pixel_models/rfpp`]
 Note: The current implementation supports AFHQ-Cat and CelebA datasets. Support for ImageNet and higher resolutions (up to 256x256) will be released soon. Alternatively for these use cases, please check our latent model solutions.
 
 
-### **Running the Gradio Demos**
+## **Running the Gradio Demos**
 
 Once the environment is set up, you can run the following demos:
 
