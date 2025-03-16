@@ -27,11 +27,14 @@
 
 ## TODOs
 
+- [ ] Extend the FlowChef to the video models.
+- [ ] (top-priority) Release the support for [Inductive Moment Matching](https://github.com/lumalabs/imm) for inverse problems.
+- [ ] (top-priority) Release the latent-space inverse problem benchmark script (with baselines).
+- [ ] Release the diffusion baselines.
+- ~~[x] Release the pixel-space inverse problem benchmark script (with baselines)~~
+- ~~[x] Release the organized demo scripts~~
 - ~~[x] Release the Flux.1[dev] demo~~
 - ~~[x] Release the InstaFlow demo~~
-- ~~[x] Release the organized demo scripts~~
-- [ ] Release the latent-space inverse problem benchmark script (with baselines)
-- [ ] Release the pixel-space inverse problem benchmark script (with baselines)
 
 ## Instructions for `gradio_demos`
 
@@ -57,7 +60,7 @@ conda activate flowchef_env
 pip install -r requirements.txt
 ```
 
-By following these steps, you will have a conda environment set up and ready to run the `gradio_demos` project.
+By following these steps, you will have a conda environment set up and ready to run the `demos`.
 
 ### **Running the Gradio Demos**
 
@@ -80,6 +83,21 @@ Once the environment is set up, you can run the following demos:
     ```bash
     gradio app_instaflow_ip_inpaint.py
     ```
+
+
+## Instructions for `inverseproblems/pixel_models/rfpp`
+
+This folder contains the code for solving inverse problems using RF++ models. We provide scripts for various baselines and our FlowChef approach.
+
+For detailed instructions on:
+- Setting up pretrained checkpoints
+- Downloading test datasets 
+- Running inference for different inverse problems (box inpainting, super resolution, deblurring)
+- Evaluating baselines (DFlow, OTODE, DPS, FreeDoM) and FlowChef
+
+Please refer to the detailed README in the [`inverseproblems/pixel_models/rfpp`](inverseproblems/pixel_models/rfpp/README.md) directory.
+
+Note: The current implementation supports AFHQ-Cat and CelebA datasets. Support for ImageNet and higher resolutions (up to 256x256) will be released soon. Alternatively for these use cases, please check our latent model solutions.
 
 
 ## Citation
