@@ -29,8 +29,9 @@
 
 - [ ] Extend the FlowChef to the video models.
 - [ ] (top-priority) Release the support for [Inductive Moment Matching](https://github.com/lumalabs/imm) for inverse problems.
-- [ ] (top-priority) Release the latent-space inverse problem benchmark script (with baselines).
-- [ ] Release the diffusion baselines.
+- [ ] (upnext) Release CLI scripts for the image editing.
+- [ ] (upnext) Release the latent-space inverse problem benchmark script (with baselines).
+- [ ] (low-priority) Release the diffusion baselines.
 - ~~[x] Release the pixel-space inverse problem benchmark script (with baselines)~~
 - ~~[x] Release the organized demo scripts~~
 - ~~[x] Release the Flux.1[dev] demo~~
