@@ -1,0 +1,13 @@
+{
+    "prompt": " a woman with long hair sitting in the sand at sunset",
+    "edit_prompt": "a woman with short hair sitting in the sand at sunset",
+    "seed": 0,
+    "randomize_seed": true,
+    "num_inference_steps": 50,
+    "max_steps": 30,
+    "learning_rate": 0.5,
+    "max_source_steps": 20,
+    "optimization_steps": 2,
+    "true_cfg": 2,
+    "inverseproblem": false
+}

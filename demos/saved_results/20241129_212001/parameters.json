@@ -1,0 +1,10 @@
+{
+    "prompt": " ",
+    "seed": 52,
+    "randomize_seed": false,
+    "num_inference_steps": 200,
+    "max_steps": 200,
+    "learning_rate": 0.02,
+    "optimization_steps": 10,
+    "inverseproblem": true
+}

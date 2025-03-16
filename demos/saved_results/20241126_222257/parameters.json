@@ -1,0 +1,13 @@
+{
+    "mode": "Inpainting",
+    "prompt": "A cute pig with big eyes",
+    "edit_prompt": "",
+    "seed": 0,
+    "randomize_seed": true,
+    "num_inference_steps": 30,
+    "max_steps": 19.8,
+    "learning_rate": 1,
+    "max_source_steps": 20,
+    "optimization_steps": 5,
+    "true_cfg": 2
+}

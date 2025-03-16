@@ -1,0 +1,12 @@
+{
+    "prompt": "a cat",
+    "edit_prompt": "a silver sculpture of cat",
+    "seed": 0,
+    "randomize_seed": true,
+    "num_inference_steps": 50,
+    "max_steps": 50,
+    "learning_rate": 0.5,
+    "max_source_steps": 20,
+    "optimization_steps": 5,
+    "true_cfg": 2,
+}

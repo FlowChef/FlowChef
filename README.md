@@ -22,15 +22,65 @@
 
 ## 🔥 Updates
 
+- **[2025.03.15]** Scripts for gradio demo are provided in this repo.
 - **[2024.11.29]**  All working demos are released on [HuggingFace](https://huggingface.co/FlowChef)!
 
 ## TODOs
 
-- [x] Release the Flux.1[dev] demo
-- [x] Release the InstaFlow demo
-- [ ] Release the organized demo scripts
+- ~~[x] Release the Flux.1[dev] demo~~
+- ~~[x] Release the InstaFlow demo~~
+- ~~[x] Release the organized demo scripts~~
 - [ ] Release the latent-space inverse problem benchmark script (with baselines)
 - [ ] Release the pixel-space inverse problem benchmark script (with baselines)
+
+## Instructions for `gradio_demos`
+
+This folder contains all the gradio demos on Flux and InstaFLow. 
+We provide Editing and Inpainting (Inverse Problem Setting) using FlowChef.
+
+To set up the conda environment for the `gradio_demos` project, follow these steps:
+
+```bash
+# Clone the repository
+# alternatively manually download the codebase
+git clone https://github.com/FlowChef/FlowChef.git
+
+cd FlowChef/demos
+
+# Create a new conda environment
+conda create --name flowchef_env python=3.10 -y
+
+# Activate the conda environment
+conda activate flowchef_env
+
+# Install the required dependencies
+pip install -r requirements.txt
+```
+
+By following these steps, you will have a conda environment set up and ready to run the `gradio_demos` project.
+
+### **Running the Gradio Demos**
+
+Once the environment is set up, you can run the following demos:
+
+1. **Flux Editing and Inpainting (Inverse Problem):**
+
+    ```bash
+    gradio app_flux.py
+    ```
+
+2. **InstaFlow Editing:**
+
+    ```bash
+    gradio app_instaflow_edit.py
+    ```
+
+3. **InstaFlow Inpainting (Inverse Problem):**
+
+    ```bash
+    gradio app_instaflow_ip_inpaint.py
+    ```
+
 
 ## Citation
 ```
