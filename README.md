@@ -30,12 +30,12 @@
 - [ ] Extend the FlowChef to the video models.
 - [ ] (top-priority) Release the support for [Inductive Moment Matching](https://github.com/lumalabs/imm) for inverse problems.
 - [ ] (upnext) Release CLI scripts for the image editing.
-- [ ] (upnext) Release the latent-space inverse problem benchmark script (with baselines).
 - [ ] (low-priority) Release the diffusion baselines.
-- ~~[x] Release the pixel-space inverse problem benchmark script (with baselines)~~
-- ~~[x] Release the organized demo scripts~~
-- ~~[x] Release the Flux.1[dev] demo~~
-- ~~[x] Release the InstaFlow demo~~
+- [x] ~~Release the latent-space inverse problem benchmark script.~~
+- [x] ~~Release the pixel-space inverse problem benchmark script (with baselines)~~
+- [x] ~~Release the organized demo scripts~~
+- [x] ~~Release the Flux.1[dev] demo~~
+- [x] ~~Release the InstaFlow demo~~
 
 ## FlowChef Setup (Flux & InstaFlow)
 
@@ -58,10 +58,42 @@ pip install -e .
 
 By following these steps, you will have a conda environment set up and ready to run the image editing & gradio `demos`.
 
+## Instructions for Image Editing
 
-## Instructions for `inverseproblems/pixel_models/rfpp`
+Coming
 
-This folder contains the code for solving inverse problems using RF++ models. We provide scripts for various baselines and our FlowChef approach.
+## Instructions for Inverse Problems
+
+### InstaFlow:
+
+Run following command to test inverse problems on InstaFlow using FlowChef without backpropagation.
+Importantly, this is first step towards the gradient-free solution however latent space of VAE and VAE itself could add unwanted non-linearity.
+Therefore, as outlined in the paper, inference is lightning fast but may not be the SOTA all the time.
+
+Supported opetators: `inpaint`, `super`, `deblur`
+
+```bash
+# hyperparameters for super resolution and deblurring
+python ./src/instaflow_inverseproblems.py \
+        --input_dir ./assets/inverseproblems/ \
+        --operation super \
+        --random_seed --learning_rate 0.02 --max_steps 100 --num_inference_steps 100
+
+# hyperparmaeters for box inpainting
+python ./src/instaflow_inverseproblems.py \
+        --input_dir ./assets/inverseproblems/ \
+        --operation inpaint \
+        --random_seed --learning_rate 0.5 --max_steps 200 --num_inference_steps 200
+```
+
+The results will be stored in `./outputs` folder. Many Flow model based baselines does not work very well at all despite compute intensive backpropagation.
+We refer reders to [PSLD-LDM](https://github.com/LituRout/PSLD) and [Resample](https://github.com/soominkwon/resample) for diffusion base approaches.
+Additionally, we do not add any manifold regularizers or learning rate scheduler.
+But we found that (espeically, learning rate scheduler) doing so helps model perform much better.
+
+### Pixel model (RF++): `inverseproblems/pixel_models/rfpp`
+
+[This folder](inverseproblems/pixel_models/rfpp) contains the code for solving inverse problems using RF++ models. We provide scripts for various baselines and our FlowChef approach.
 
 For detailed instructions on:
 - Setting up pretrained checkpoints
