@@ -61,7 +61,7 @@ By following these steps, you will have a conda environment set up and ready to 
 ## Instructions for Image Editing
 
 <p align="center">
-  <img src="assets/floechef_bunny.png" alt="FlowChef Editing" width="600"/>
+  <img src="assets/flowchef_bunny.png" alt="FlowChef Editing" width="600"/>
 </p>
 
 Although we recommend using the gradio demo for image editing, below we show how to perform editing using CLI.
@@ -103,7 +103,7 @@ python ./src/instaflow_edit.py \
 ## Instructions for Inverse Problems
 
 <p align="center">
-  <img src="assets/floechef_cat.png" alt="FlowChef Inverse Problems" width="600"/>
+  <img src="assets/flowchef_cat.png" alt="FlowChef Inverse Problems" width="600"/>
 </p>
 
 ### InstaFlow:
