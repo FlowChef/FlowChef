@@ -60,6 +60,10 @@ By following these steps, you will have a conda environment set up and ready to 
 
 ## Instructions for Image Editing
 
+<p align="center">
+  <img src="assets/floechef_bunny.png" alt="FlowChef Editing" width="600"/>
+</p>
+
 Although we recommend using the gradio demo for image editing, below we show how to perform editing using CLI.
 
 > While our current implementation requires manually annotated masks, we have successfully integrated [ConceptAttention](https://github.com/helblazer811/ConceptAttention) with FlowChef on Flux to enable fully automatic, annotation-free editing. This enhancement will be released by March 21st, 2025, significantly streamlining the editing workflow using FlowChef.
@@ -97,6 +101,10 @@ python ./src/instaflow_edit.py \
 
 
 ## Instructions for Inverse Problems
+
+<p align="center">
+  <img src="assets/floechef_cat.png" alt="FlowChef Inverse Problems" width="600"/>
+</p>
 
 ### InstaFlow:
 
