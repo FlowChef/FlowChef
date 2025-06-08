@@ -1,23 +1,56 @@
+from pipeline_stable_recitified_diffusion import StableDiffusionPipeline
 import torch
-import sys
-import os
+from diffusers import DPMSolverMultistepScheduler, DDIMScheduler, EulerDiscreteScheduler
 import argparse
 from PIL import Image
 from pathlib import Path
-import json
 from tqdm import tqdm
-from src.pipeline_rf_inverseproblems import RectifiedFlowPipeline as RectifiedFlowPipelineInpaint
 
-pipe = RectifiedFlowPipelineInpaint.from_pretrained("XCLIU/2_rectified_flow_from_sd_1_5", torch_dtype=torch.float32)
-pipe.to("cuda")
+def load_pipeline(
+    pretrained_path, lcm_lora_path, personalized_path, weight_dtype, device
+):
 
-def generate_image(prompt, input_image, operator, random_seed=False, learning_rate=0.02, max_steps=100, optimization_steps=1, num_inference_steps=100, guidance_scale=0.5, output_path=None, save_masked_image=False, *args, **kwargs):
+    pipeline = StableDiffusionPipeline.from_pretrained(
+        pretrained_path,
+        scheduler=DDIMScheduler(
+            num_train_timesteps=1000,
+            beta_start=0.00085,
+            beta_end=0.012,
+            timestep_spacing="trailing",
+            clip_sample=False,
+            set_alpha_to_one=False,
+            beta_schedule="linear",
+        ),
+        torch_dtype=weight_dtype,
+        safety_checker=None,
+    )
+
+    # pipeline.set_progress_bar_config(disable=True)
+    if personalized_path:
+        weight = torch.load(personalized_path, map_location="cpu")
+        pipeline.unet.load_state_dict(weight)
+        del weight
+
+    pipeline = pipeline.to(device, dtype=weight_dtype)
+
+    return pipeline
+
+pipeline =  load_pipeline(
+            "stable-diffusion-v1-5/stable-diffusion-v1-5",
+            None,
+            "checkpoints/rd.ckpt",
+            torch.float16,
+            f"cuda:0",
+        )
+
+def generate_image(prompt, input_image, operator, random_seed=False, learning_rate=0.000000, max_steps=-1, optimization_steps=0, num_inference_steps=4, guidance_scale=4.5, output_path=None, save_masked_image=False, *args, **kwargs):
     if random_seed:
         generator = None
     else:
         generator = torch.Generator(device="cuda").manual_seed(7984785)
 
-    images = pipe(
+    generator=None
+    images = pipeline(
         prompt=prompt,
         input_image=input_image,
         operator=operator,
@@ -44,9 +77,9 @@ if __name__ == "__main__":
     from pathlib import Path
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input_dir", type=str, required=True, help="Parent directory containing image folders")
-    parser.add_argument("--output_dir", type=str, required=False, default="./outputs/instaflow", help="Output directory for generated images")
-    parser.add_argument("--operation", type=str, required=True, choices=['inpaint', 'super', 'deblur'], 
+    parser.add_argument("--input_dir", type=str, required=True)
+    parser.add_argument("--output_dir", type=str, required=False, default="./outputs/rectified_diffusion", help="Output directory for generated images")
+    parser.add_argument("--operation", type=str, required=False, default="inpaint", choices=['inpaint', 'super', 'deblur'], 
                        help="Type of operation to perform")
     parser.add_argument("--box_size", type=int, default=128, help="Box size for inpainting")
     parser.add_argument("--scale_factor", type=int, default=4, help="Scale factor for super resolution")
