@@ -10,7 +10,7 @@
 
 
 <div align="center">
-  <video src="https://github.com/user-attachments/assets/c0ac474d-726a-4003-8b9f-4ff32a400d82" autoplay muted loop playsinline style="width: 50%;"></video>
+  <img src="./assets/teaser.png" width="50%">
 </div>
 
 
