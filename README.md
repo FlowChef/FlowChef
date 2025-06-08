@@ -22,6 +22,7 @@
 
 ## 🔥 Updates
 
+- **[2025.06.07]** Support for rectified-diffusion to solve inverse problems added.
 - **[2025.03.15]** Scripts for gradio demo are provided in this repo.
 - **[2024.11.29]**  All working demos are released on [HuggingFace](https://huggingface.co/FlowChef)!
 
@@ -106,13 +107,18 @@ python ./src/instaflow_edit.py \
   <img src="assets/flowchef_cat.png" alt="FlowChef Inverse Problems" width="600"/>
 </p>
 
-### InstaFlow:
+FlowChef provides support for solving inverse problems using models with more direct trajectories, specifically Rectified-Diffusion and InstaFlow. Our experiments demonstrate that Rectified-Diffusion achieves exceptional performance that rivals state-of-the-art approaches in this domain.
 
-Run following command to test inverse problems on InstaFlow using FlowChef without backpropagation.
+We find that a major computational bottleneck in existing methods stems from the Variational Autoencoders (VAEs). Rather than attempting to resolve this limitation, our focus is on exploring and leveraging the elegant theoretical properties of pure diffusion and flow models that follow straight trajectories. Needless to say that by incorporating better VAE tricks (from prior works) will improve the FlowChef further.
+
+
+Run following command to test inverse problems using FlowChef without backpropagation.
 Importantly, this is first step towards the gradient-free solution however latent space of VAE and VAE itself could add unwanted non-linearity.
 Therefore, as outlined in the paper, inference is lightning fast but may not be the SOTA all the time.
 
 Supported opetators: `inpaint`, `super`, `deblur`
+
+### InstaFlow:
 
 ```bash
 # hyperparameters for super resolution and deblurring
@@ -126,6 +132,26 @@ python ./src/instaflow_inverseproblems.py \
         --input_dir ./assets/inverseproblems/ \
         --operation inpaint \
         --random_seed --learning_rate 0.5 --max_steps 200 --num_inference_steps 200
+```
+
+### Rectified-Diffusion:
+
+```bash
+# download the model
+mkdir -p ./checkpoints/ && wget -c https://huggingface.co/wangfuyun/Rectified-Diffusion/resolve/main/weights/rd.ckpt -P ./checkpoints/
+
+# hyperparmaeters for box inpainting (~6 secs)
+python ./src/rectifiedd_inverseproblems.py \
+        --input_dir ./assets/inverseproblems/ \
+        --operation inpaint \
+        --random_seed --learning_rate 0.2 --max_steps 100 --num_inference_steps 100 --optimization_steps 4
+
+# hyperparameters for super resolution and deblurring (~90 secs)
+python ./src/rectifiedd_inverseproblems.py \
+        --input_dir ./assets/inverseproblems/ \
+        --operation super \
+        --random_seed --learning_rate=0.5  --num_inference_steps=100 --optimization_steps 10
+
 ```
 
 The results will be stored in `./outputs` folder. Many Flow model based baselines does not work very well at all despite compute intensive backpropagation.

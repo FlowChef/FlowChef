@@ -175,7 +175,7 @@ class GaussianDeblurOperator:
         # Apply gaussian blur using conv2d
         blurred = torch.nn.functional.conv2d(
             x.to(self.device), 
-            self.kernel,
+            self.kernel.to(x.dtype),
             padding=self.kernel_size//2,
             groups=x.shape[1]
         )
