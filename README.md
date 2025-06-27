@@ -1,4 +1,4 @@
-## 🚀 🚀 Steering Rectified Flow Models in the Vector Field for Controlled Image Generation
+## 🚀 🚀 [ICCV 2025] Steering Rectified Flow Models in the Vector Field for Controlled Image Generation
 
 <div align="center">
   <a href="https://flowchef.github.io/"><img src="https://img.shields.io/static/v1?label=Project%20Page&message=GitHub&color=blue&logo=github"></a> &ensp;
